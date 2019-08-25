@@ -461,7 +461,7 @@ return (
    >
      <StaticMap
        mapStyle='mapbox://styles/mapbox/dark-v9'
-       mapboxApiAccessToken = {process.env.REACT_APP_MB_API_KEY}
+       mapboxApiAccessToken = "pk.eyJ1IjoiYXJib2doYXN0IiwiYSI6ImNqemJuZmxucTAxOHMzbXM0MWl1ZDV5bWMifQ.XrDsYZNNzA_HUcdmB74FEA"
       />
       { this._renderTooltip() }
       { this.handleClickedObject() }
