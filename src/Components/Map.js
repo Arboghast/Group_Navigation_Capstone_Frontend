@@ -227,7 +227,7 @@ class Map extends Component {
   
   //retrieves estimeted travel time for each user in currentGroup from Google Directions API (the actual API request is made in the backend)
   callAxios = async (workingGroup) => {
-    let response = await axios.post("http://localhost:4000/api/directions/eta", {workingGroup}).catch(err => {console.log(err)});
+    let response = await axios.post("https://group-navigation-backend.herokuapp.com/api/directions/eta", {workingGroup}).catch(err => {console.log(err)});
     this.setState({
       etaResponse: response.data
     })

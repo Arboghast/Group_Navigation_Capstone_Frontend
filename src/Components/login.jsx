@@ -24,8 +24,8 @@ class Login extends Component {
   };
 
   api = () => {
-    if (this.state.log) return "http://localhost:4000/api/auth";
-    else return "http://localhost:4000/api/users";
+    if (this.state.log) return "https://group-navigation-backend.herokuapp.com/api/auth";
+    else return "https://group-navigation-backend.herokuapp.com/api/users";
   };
 
   submit = async ev => {

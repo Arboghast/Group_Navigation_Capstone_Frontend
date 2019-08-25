@@ -21,7 +21,7 @@ class GroupGrid extends Component {
                 document.querySelector("#overlay").classList.add("activ");
                 document.querySelector(".popup").classList.add("activ");
 
-                let response = await Axios.put('http://localhost:4000/api/groups/', {id:group.id});
+                let response = await Axios.put('https://group-navigation-backend.herokuapp.com/api/groups/', {id:group.id});
                 let users = response.data;
                 let all = this.props.users;
                 let filtered = all.filter(user =>{
@@ -47,7 +47,7 @@ class GroupGrid extends Component {
               onClick={async () => {
                 if (this.props.currentGroup !== -1) {
                   let oldGroupName = await Axios.get(
-                    "http://localhost:4000/api/groups/" +
+                    "https://group-navigation-backend.herokuapp.com/api/groups/" +
                       this.props.currentGroup
                   );
                   this.props.socket.emit(
@@ -56,7 +56,7 @@ class GroupGrid extends Component {
                   );
                 }
                 let newGroupName = await Axios.get(
-                  "http://localhost:4000/api/groups/" + group.id
+                  "https://group-navigation-backend.herokuapp.com/api/groups/" + group.id
                 );
                 this.props.socket.emit("enter-group", newGroupName.data.name);
                 this.props.changeGroup(group.id);
@@ -80,7 +80,7 @@ class GroupGrid extends Component {
                   }
                 }
 
-                await Axios.put("http://localhost:4000/api/groups/remove",{
+                await Axios.put("https://group-navigation-backend.herokuapp.com/api/groups/remove",{
                   id: this.props.login.id,
                   groupId: group.id
                 }).catch(err => console.log(err));
