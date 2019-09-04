@@ -154,10 +154,7 @@ class Form extends Component {
 
     this.props.socket.emit('refresh',{newGroup: newGroup});
 
-    if(this.props.groups.length == 0)
-    {
       window.location.refresh();
-    }
     this.close();
   }
 
