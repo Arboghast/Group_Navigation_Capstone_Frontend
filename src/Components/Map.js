@@ -67,7 +67,8 @@ class Map extends Component {
     let res = await axios.get("https://group-navigation-backend.herokuapp.com/api/groups/" + this.props.currentGroup)
     .catch(err => console.log(err))
 
-    return res.body;
+    console.log(res);
+    return res;
   }
 
   //selects random colors for the user paths from the 'colors' array.
@@ -256,8 +257,13 @@ class Map extends Component {
   let userIcons = [];
 
   //finding current group
-  let workingGroup = this.findGroupById();
+  let workingGroup = null;
+  this.findGroupById()
+  .then(res => {
+    workingGroup = res;
+  }).catch(err=>console.log(err))
 
+  console.log(workingGroup);
     //when user changes the group, the states of clickedObject and loadedETA indicator are reset
     if (this.state.previousGroup !== this.props.currentGroup){
       this.resetClickedUser();
