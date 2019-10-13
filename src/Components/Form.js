@@ -153,8 +153,6 @@ class Form extends Component {
   //adds new group and paths to the redux store
 
     this.props.socket.emit('refresh',{newGroup: newGroup});
-
-    location.reload();
     this.close();
   }
 
