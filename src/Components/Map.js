@@ -147,7 +147,7 @@ class Map extends Component {
   findUserByName(name){
     let workingGroup = this.findGroupById();
     for (let i = 0; i < workingGroup.users.length; i++){
-      if (workingGroup.users[i].name == name){
+      if (workingGroup.users[i].name === name){
         return workingGroup.users[i];
       }
     }
@@ -158,7 +158,7 @@ class Map extends Component {
   _renderTooltip() {
     const {hoveredObject, pointerX, pointerY} = this.state || {};
     //if the hovered icon is the destination marker, render the longest user's travel time
-    if (hoveredObject && hoveredObject.message == "Your Destination"){
+    if (hoveredObject && hoveredObject.message === "Your Destination"){
       return hoveredObject && (
         <div className = "infoMessage" style={{position: 'absolute', zIndex: 1, pointerEvents: 'none', left: pointerX, top: pointerY}}>
           {this.state.loadedETA ?
@@ -461,7 +461,7 @@ return (
    >
      <StaticMap
        mapStyle='mapbox://styles/mapbox/dark-v9'
-       mapboxApiAccessToken = {process.env.REACT_APP_MB_API_KEY}
+       mapboxApiAccessToken = "pk.eyJ1IjoiYXJib2doYXN0IiwiYSI6ImNqemJuZmxucTAxOHMzbXM0MWl1ZDV5bWMifQ.XrDsYZNNzA_HUcdmB74FEA"
       />
       { this._renderTooltip() }
       { this.handleClickedObject() }
