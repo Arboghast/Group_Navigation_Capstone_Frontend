@@ -37,7 +37,8 @@ class Chat extends Component {
       this.props.socket.emit('new-message', {message:this.state.msgInput,name: this.state.name});
       this.setState({
         msgInput: ''
-      })
+      });
+      document.getElementById("msgInputField").value="";
       return;
     } else {
       this.state.active = true;

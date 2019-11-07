@@ -38,7 +38,7 @@ class Popup extends Component {
 
   sendUsers = async () => {
     //retrieve the group that this pop up is referring to
-    let groupN = await Axios.get('https://group-navigation-backend.herokuapp.com/api/groups/' + this.props.invGroup)
+    let groupN = await Axios.get('https://localhost:4000/api/groups/' + this.props.invGroup)
     console.log(groupN.data);
     let newGroup = {
       users: this.state.selected,
@@ -47,7 +47,7 @@ class Popup extends Component {
       groupId: groupN.data.id
     }
     // send invitations to other members
-    await Axios.post('https://group-navigation-backend.herokuapp.com/api/invitations',{newGroup})
+    await Axios.post('https://localhost:4000/api/invitations',{newGroup})
 
     //socket event will fire a rerender of the dashboard to all users to mimic real-time invitation sent
     this.props.socket.emit("refresh", {invite: newGroup});

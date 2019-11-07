@@ -34,7 +34,7 @@ class Dashboard extends Component {
     }, 100);
 
     await axios
-      .put("https://group-navigation-backend.herokuapp.com/api/users", { user }) //on dashboard init, we will retrieve a list of all
+      .put("https://localhost:4000/api/users", { user }) //on dashboard init, we will retrieve a list of all
       .then(res => {
         //other users from the database to select from, and store them in the redux store
         this.props.addUsers(res.data);
@@ -42,14 +42,14 @@ class Dashboard extends Component {
       .catch(err => console.log(err));
 
     try {
-      let response = await axios.put("https://group-navigation-backend.herokuapp.com/api/users/id", {
+      let response = await axios.put("https://localhost:4000/api/users/id", {
         id: user.id
       }); //return logged in user with its associated groups
       let groupsArr = response.data[0].Groups;
 
       for (let i = 0; i < groupsArr.length; i++) {
         let group = groupsArr[i].id;
-        let users = await axios.put("https://group-navigation-backend.herokuapp.com/api/groups", {
+        let users = await axios.put("https://localhost:4000/api/groups", {
           id: group
         }); //returns a list of all users assosiated to the group
         groupsArr[i].users = users.data;
@@ -59,7 +59,7 @@ class Dashboard extends Component {
           latitude: groupsArr[i].latitude,
           longitude: groupsArr[i].longitude
         };
-        let path = await axios.post("https://group-navigation-backend.herokuapp.com/api/directions", {
+        let path = await axios.post("https://localhost:4000/api/directions", {
           newGroup
         }); //get the paths for each user in that group
         console.log(path);
@@ -73,7 +73,7 @@ class Dashboard extends Component {
 
     //stores all invites for the loged in user to the redux store
     try {
-      let response = await axios.put("https://group-navigation-backend.herokuapp.com/api/invitations", {
+      let response = await axios.put("https://localhost:4000/api/invitations", {
         id: this.props.login.id
       });
       console.log("CALLED");
@@ -107,7 +107,7 @@ class Dashboard extends Component {
         longitude: group.longitude
       };
 
-      let path = await axios.post("https://group-navigation-backend.herokuapp.com/api/directions", {
+      let path = await axios.post("https://localhost:4000/api/directions", {
         newGroup
       });
 
@@ -132,7 +132,7 @@ class Dashboard extends Component {
     this.props.socket.on("refresh-invitations", async filler => { //sending invites func
       try {
         let invitations = await axios.put(
-          "https://group-navigation-backend.herokuapp.com/api/invitations",
+          "https://localhost:4000/api/invitations",
           {
             id: this.props.login.id
           }
@@ -215,14 +215,14 @@ class Dashboard extends Component {
                   className="acceptBtn"
                   onClick={async () => {
                     let group = await axios
-                      .put("https://group-navigation-backend.herokuapp.com/api/groups/add", {
+                      .put("https://localhost:4000/api/groups/add", {
                         groupId: invite.groupId,
                         id: invite.UserId
                       })
                       .catch(err => console.log(err));
 
                     await axios
-                      .post("https://group-navigation-backend.herokuapp.com/api/invitations/delete", {
+                      .post("https://localhost:4000/api/invitations/delete", {
                         id: invite.id
                       })
                       .catch(err => console.log(err));
@@ -240,7 +240,7 @@ class Dashboard extends Component {
                   className="declineBtn"
                   onClick={async () => {
                     await axios
-                      .post("https://group-navigation-backend.herokuapp.com/api/invitations/delete", {
+                      .post("https://localhost:4000/api/invitations/delete", {
                         id: invite.id
                       })
                       .catch(err => console.log(err));

@@ -101,7 +101,7 @@ class Form extends Component {
 
       //converting the address of the group into coordinates
       let response = await axios.post(
-        "https://group-navigation-backend.herokuapp.com/api/directions/address",
+        "https://localhost:4000/api/directions/address",
         { address: this.state.address }
       );
 
@@ -122,7 +122,7 @@ class Form extends Component {
 
     try {
       //getting back all user paths to destination
-      let response = await axios.post("https://group-navigation-backend.herokuapp.com/api/directions", {
+      let response = await axios.post("https://localhost:4000/api/directions", {
         newGroup
       });
       let bool = true;
@@ -147,7 +147,7 @@ class Form extends Component {
     }
 
     try {
-      let newId = await axios.post("https://group-navigation-backend.herokuapp.com/api/groups", {
+      let newId = await axios.post("https://localhost:4000/api/groups", {
         newGroup
       }); //adds new group to database
       newGroup.id = newId.data.id;
