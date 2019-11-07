@@ -179,7 +179,7 @@ class Map extends Component {
     }
     //when user is no longer hovered, set the hoveredUser to null
     else{
-      if (this.state.hoveredUser != null){ 
+      if (this.state.hoveredUser != null){  
         this.setState({
           hoveredUser: null
         })
