@@ -73,9 +73,13 @@ class Form extends Component {
   //runs when "Create Group" button is clicked
   async handleSubmit(e) {
     e.preventDefault();
+    let myself = await axios.get("http://localhost:4000/api/users/" + this.props.login.id);
+
     let newGroup = {
       name: this.state.name,
-      users: [...this.state.selectedUsers, this.props.login]
+      users: [...this.state.selectedUsers, myself.data],
+      latitude: 0.0,
+      longitude: 0.0
     };
 
     //validate user input  
@@ -165,6 +169,7 @@ class Form extends Component {
       return sl;
     });
     await this.setState({ selected: newsl });
+    await this.setState({ selectedUsers: []});
     document.querySelector(".nameInputField").value = "";
     document.querySelector(".latInputField").value = "";
 
