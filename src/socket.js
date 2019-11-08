@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('https://group-navigation-backend.herokuapp.com');
+const socket = io('https://localhost:4000');
 
 socket.on('connect', ()=>{
     console.log("you have been connected");
